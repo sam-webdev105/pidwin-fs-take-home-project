@@ -11,7 +11,7 @@ import Input from "./Input";
 import { jwtDecode } from "jwt-decode";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { signup, login } from "../../actions/login";
+import { signup, login } from "../../actions";
 import LockIcon from "@mui/icons-material/LockOutlined";
 import { styles } from "./styles";
 

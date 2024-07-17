@@ -10,7 +10,7 @@ import {
 import Input from "../Login/Input";
 import { styles } from "./styles";
 import LockIcon from "@mui/icons-material/LockRounded";
-import { changePassword } from "../../actions/login";
+import { changePassword } from "../../actions";
 import { jwtDecode } from "jwt-decode";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
