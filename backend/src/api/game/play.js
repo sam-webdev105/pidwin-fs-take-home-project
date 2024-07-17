@@ -25,8 +25,8 @@ const play = async (req, res) => {
 
     // randomly decide the coin side
     const rValue = seedrandom(Date.now())()
-    const server_coin_side = rValue >= 0.5 ? 'head' : 'tail'
-    const won = server_coin_side === coin_side
+    const server_coin_side = rValue >= 0.5 ? true : false
+    const won = server_coin_side == coin_side
 
     // add 2x wager_token if the user is the winner
     if (won) {
