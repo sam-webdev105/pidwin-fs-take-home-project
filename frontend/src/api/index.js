@@ -9,7 +9,12 @@ API.interceptors.request.use((req) => {
   return req;
 });
 
+// auth
 export const login = (formData) => API.post("/api/user/login", formData);
 export const signUp = (formData) => API.post("/api/user/signup", formData);
 export const changePassword = (formData) =>
   API.post("/api/user/changePassword", formData);
+
+// game
+export const syncGame = (formData) => API.post("/api/game/sync", formData);
+export const playGame = (formData) => API.post("/api/game/play", formData);
