@@ -34,7 +34,7 @@ const play = async (req, res) => {
       await existingUser.save()
     }
 
-    // log history
+    // log history, calculating streak_count, multiple_count, fresh state
     const history = []
     try {
       const result = await History.find({ email })
@@ -43,30 +43,26 @@ const play = async (req, res) => {
         .exec();
       history.push(...result)
     } catch { }
-    const streak_count = won === true && history.length > 0 && history[0].won === true ?
-      history[0].fresh === false ? history[0].streak_count + 1 : 1
-      : 1
-    const double_count = streak_count === 3 ? 3 :
-      streak_count === 5 ? 10 : 1
+
+    const streak_count = (won === true && history.length > 0 && history[0].won === true && history[0].fresh === false) ? history[0].streak_count + 1 : 1
+    const multiple_count = streak_count === 3 ? 3 : (streak_count === 5 ? 10 : 1)
+
     History.create({
       email,
       wager_token,
       won,
       streak_count,
-      double_count,
+      multiple_count,
       fresh: streak_count === 5,
     })
 
     // bonus_payout
-    const bonus_token = wager_token * (double_count - 1)
+    const bonus_token = wager_token * (multiple_count - 1)
     existingUser.crypto_token = existingUser.crypto_token + bonus_token
     await existingUser.save()
 
     // return server coin result, user's WIN status
-    res.status(200).json({
-      server_coin_side,
-      won,
-    });
+    res.status(200).json({ server_coin_side, won });
   } catch (error) {
     res.status(500).json({ message: "Something went wrong" });
   }
