@@ -1,5 +1,4 @@
-import User from "../models/user.js";
-import History from "../models/history.js";
+import { User, History } from "../../models/index.js";
 import seedrandom from "seedrandom";
 
 const play = async (req, res) => {

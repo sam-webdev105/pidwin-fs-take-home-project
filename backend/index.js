@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 import bodyParser from "body-parser";
 import cors from "cors";
 import dotenv from 'dotenv';
-import { userRouter, gameRouter } from "./src/api";
+import { userRouter, gameRouter } from "./src/api/index.js";
 
 dotenv.config();
 
