@@ -1,6 +1,7 @@
 import React from "react";
 import { Container, Grow, Paper, Typography } from "@mui/material";
 import { jwtDecode } from "jwt-decode";
+import Game from "../Game";
 
 const Home = () => {
 
@@ -11,12 +12,10 @@ const Home = () => {
 
   return (
     <Grow in>
-      <Container component="main" maxWidth="sm">
+      <Container component="main">
         <Paper elevation={3}>
           {isSingedIn !== "null" && isSingedIn !== null ? (
-            <Typography variant="h4" align="center" color="primary">
-              {`Welcome ${user.name}`}
-            </Typography>
+            <Game />
           ) : (
             <Typography variant="h4" align="center" color="primary">
               Login to Play
