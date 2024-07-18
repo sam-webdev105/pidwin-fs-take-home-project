@@ -1,5 +1,5 @@
 import { LOGIN, LOGOUT } from "../constants/actionTypes";
-import * as api from "../api";
+import api from "../api";
 import * as messages from "../messages";
 
 export const signup = (formData, history) => async (dispatch) => {

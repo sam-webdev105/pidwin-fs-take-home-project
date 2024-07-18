@@ -1,5 +1,5 @@
 import { SYNC_GAME, PLAY_GAME } from "../constants/actionTypes";
-import * as api from "../api";
+import api from "../api";
 import * as messages from "../messages";
 
 export const syncGame = (formData) => async (dispatch) => {

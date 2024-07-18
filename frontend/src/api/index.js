@@ -10,11 +10,13 @@ API.interceptors.request.use((req) => {
 });
 
 // auth
-export const login = (formData) => API.post("/api/user/login", formData);
-export const signUp = (formData) => API.post("/api/user/signup", formData);
-export const changePassword = (formData) =>
+const login = (formData) => API.post("/api/user/login", formData);
+const signUp = (formData) => API.post("/api/user/signup", formData);
+const changePassword = (formData) =>
   API.post("/api/user/changePassword", formData);
 
 // game
-export const syncGame = (formData) => API.post("/api/game/sync", formData);
-export const playGame = (formData) => API.post("/api/game/play", formData);
+const syncGame = (formData) => API.post("/api/game/sync", formData);
+const playGame = (formData) => API.post("/api/game/play", formData);
+
+export default { login, signUp, changePassword, syncGame, playGame }
