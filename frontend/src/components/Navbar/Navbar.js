@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { AppBar, Typography, Toolbar, Avatar, Button } from "@mui/material";
 import { Link, useNavigate, useLocation } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { jwtDecode } from "jwt-decode";
 import * as actionType from "../../constants/actionTypes";
 import { styles } from "./styles";
@@ -33,6 +33,8 @@ const Navbar = () => {
     );
   }, [location]);
 
+  const syncData = useSelector((state) => state.game.syncData)
+
   return (
     <AppBar sx={styles.appBar} position="static" color="inherit">
       <div sx={styles.brandContainer}>
@@ -54,6 +56,9 @@ const Navbar = () => {
             </Avatar>
             <Typography sx={styles.userName} variant="h6">
               {user.name}
+            </Typography>
+            <Typography sx={styles.userName} variant="h6">
+              TOKEN x<b>{syncData?.crypto_token}</b>
             </Typography>
             <Button
               variant="contained"
