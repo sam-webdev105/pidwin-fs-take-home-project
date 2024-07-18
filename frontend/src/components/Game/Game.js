@@ -34,9 +34,16 @@ const Game = () => {
     dispatch(syncGame(user));
   }, [playData])
 
-  // calculate streak_count, multiple_count
+  // calculate streak_count, multiple_count, hole_count
   const [multipleCount, setMultipleCount] = useState(1)
+  const [holeArray, setHoleArray] = useState([])
   useEffect(() => {
+    const holeCount = 10 - (syncData?.history ? syncData.history.length : 0)
+    const _holeArray = []
+    for (let index = 0; index < holeCount; ++index) {
+      _holeArray.push(0)
+    }
+    setHoleArray(_holeArray)
     const _streakWinCount = syncData?.history && syncData.history.length && syncData.history[0].won ? syncData.history[0].streak_count : 0
     const _multipleCount = _streakWinCount === 2 ? 3 : _streakWinCount === 4 ? 10 : 1
     setMultipleCount(_multipleCount)
@@ -73,7 +80,7 @@ const Game = () => {
             <Typography variant="body2">Server Coin Toss Result: <b>{playData.server_coin_side ? 'Heads' : 'Tails'}</b>, You <b>{playData.won ? 'WON' : 'LOST'}</b>!</Typography>
             : null}
         </Grid>
-        
+
         <Grid item xs={16}>
           <Grid
             display={'flex'}
@@ -83,7 +90,8 @@ const Game = () => {
           >
             {syncData?.history && syncData.history.length ?
               syncData.history.map((history, index) => <History key={index} data={history} />)
-              : <History data={null} />}
+              : null}
+            {holeArray.map((_, index) => <History key={index} data={null} />)}
           </Grid>
           <Grid
             display={'flex'}
