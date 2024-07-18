@@ -21,14 +21,9 @@ export const styles = {
     justifyContent: "flex-end",
     width: "1000px",
   },
-  profile: {
-    display: "flex",
-    justifyContent: "space-between",
-    width: "600px",
-  },
-  userName: {
-    display: "flex",
-    alignItems: "center",
+  button: {
+    background: '#ea8fff66',
+    marginLeft: '1rem',
   },
   brandContainer: {
     display: "flex",

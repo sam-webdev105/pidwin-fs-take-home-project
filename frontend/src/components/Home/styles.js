@@ -25,10 +25,6 @@ export const styles = {
     justifyContent: "space-between",
     width: "400px",
   },
-  userName: {
-    display: "flex",
-    alignItems: "center",
-  },
   brandContainer: {
     display: "flex",
     alignItems: "center",

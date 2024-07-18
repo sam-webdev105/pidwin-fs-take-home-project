@@ -1,5 +1,5 @@
-import React, { useCallback, useState, useEffect, useRef } from "react";
-import { TextField, Box, Button, Grid, Radio, RadioGroup, FormControl, FormLabel, FormControlLabel, Typography } from "@mui/material";
+import React, { useCallback, useState, useEffect } from "react";
+import { TextField, Box, Button, Grid, Radio, RadioGroup, FormControlLabel, Typography } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { syncGame, playGame } from "../../actions/game";
 import { jwtDecode } from "jwt-decode";
@@ -35,12 +35,10 @@ const Game = () => {
   }, [playData])
 
   // calculate streak_count, multiple_count
-  const [streakWinCount, setStreakWinCount] = useState(0)
   const [multipleCount, setMultipleCount] = useState(1)
   useEffect(() => {
     const _streakWinCount = syncData?.history && syncData.history.length && syncData.history[0].won ? syncData.history[0].streak_count : 0
     const _multipleCount = _streakWinCount === 2 ? 3 : _streakWinCount === 4 ? 10 : 1
-    setStreakWinCount(_streakWinCount)
     setMultipleCount(_multipleCount)
   }, [syncData])
 
@@ -75,6 +73,7 @@ const Game = () => {
             <Typography variant="body2">Server Coin Toss Result: <b>{playData.server_coin_side ? 'Heads' : 'Tails'}</b>, You <b>{playData.won ? 'WON' : 'LOST'}</b>!</Typography>
             : null}
         </Grid>
+        
         <Grid item xs={16}>
           <Grid
             display={'flex'}

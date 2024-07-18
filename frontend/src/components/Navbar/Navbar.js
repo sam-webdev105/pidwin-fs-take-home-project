@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { AppBar, Typography, Toolbar, Avatar, Button } from "@mui/material";
+import { Grid, AppBar, Typography, Toolbar, Avatar, Button, IconButton } from "@mui/material";
+import ExitToAppIcon from '@mui/icons-material/ExitToApp';
+import PasswordIcon from '@mui/icons-material/Password';
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { jwtDecode } from "jwt-decode";
@@ -50,34 +52,36 @@ const Navbar = () => {
       </div>
       <Toolbar sx={styles.toolbar}>
         {user !== "null" && user !== null ? (
-          <div sx={styles.profile}>
+          <Grid container justifyContent={'flex-end'} alignItems={'center'}>
             <Avatar sx={styles.purple} alt={user.name} src={user.picture}>
               {user.name.charAt(0)}
             </Avatar>
-            <Typography sx={styles.userName} variant="h6">
-              {user.name}
+            <Typography mx={1} variant="body1">
+              {user.name} ,
             </Typography>
-            <Typography sx={styles.userName} variant="h6">
-              TOKEN x<b>{syncData?.crypto_token}</b>
+            <Typography variant="body2">
+              TOKEN
             </Typography>
-            <Button
-              variant="contained"
-              sx={styles.logout}
-              color="secondary"
-              onClick={logout}
-            >
-              Logout
-            </Button>
-            <Button
-              variant="contained"
+            <Typography mx={1} variant="h6">
+              <b>x{syncData?.crypto_token}</b>
+            </Typography>
+            <IconButton
               color="secondary"
               onClick={() => {
                 history("/password");
               }}
+              sx={styles.button}
             >
-              Set Password
-            </Button>
-          </div>
+              <PasswordIcon />
+            </IconButton>
+            <IconButton
+              color="secondary"
+              onClick={logout}
+              sx={styles.button}
+            >
+              <ExitToAppIcon />
+            </IconButton>
+          </Grid>
         ) : (
           <Button
             component={Link}

@@ -13,15 +13,17 @@ const Home = () => {
   return (
     <Grow in>
       <Container component="main">
-        <Paper elevation={3}>
-          {isSingedIn !== "null" && isSingedIn !== null ? (
+        {isSingedIn !== "null" && isSingedIn !== null ? (
+          <Paper elevation={3}>
             <Game />
-          ) : (
+          </Paper>
+        ) : (
+          <Paper elevation={3} sx={{ padding: 10 }}>
             <Typography variant="h4" align="center" color="primary">
               Login to Play
             </Typography>
-          )}
-        </Paper>
+          </Paper>
+        )}
       </Container>
     </Grow>
   );
