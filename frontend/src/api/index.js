@@ -19,4 +19,5 @@ const changePassword = (formData) =>
 const syncGame = (formData) => API.post("/api/game/sync", formData);
 const playGame = (formData) => API.post("/api/game/play", formData);
 
-export default { login, signUp, changePassword, syncGame, playGame }
+const api = { login, signUp, changePassword, syncGame, playGame }
+export default api
